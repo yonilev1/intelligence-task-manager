@@ -113,7 +113,29 @@ class DB_connection:
         except TypeError as e:
             raise
 
+    
+    def get_agent_performance(self, agent_id):
+        conn = connection.get_connection()
+        cursor = conn.cursor(dictionary=True)
+        cursor.execute("USE Intelligence_db")
+        cursor.close()
+
+        #check that ID exists else error
+        cursor = conn.cursor(dictionary=True)
+        cursor.execute(f"""SELECT completed_missions, failed_missions FROM agents WHERE id = %s;""",(agent_id,))
+        row = cursor.fetchone()
+        cursor.close()
+        conn.close()
+        success_rate = 0 if (row['completed_missions'] + row['failed_missions']) == 0 else row['completed_missions']/(row['completed_missions'] + row['failed_missions'])
+        return {'Total': row['completed_missions'] + row['failed_missions'],
+                 'Completed': row['completed_missions'],
+                 'Failed': row['failed_missions'],
+                 'Success_rate': f'{success_rate * 100} %'}
+
+
+
+
 
 obj = DB_connection()
 #obj_con = obj.create_agent({'name':"YONI", 'specialty':'CODER', 'agent_rank':'Senior'})
-print((obj.increment_failed(5673)))
+print((obj.get_agent_performance(1)))

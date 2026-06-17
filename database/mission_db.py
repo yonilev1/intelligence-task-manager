@@ -61,11 +61,22 @@ class DB_Mission:
 
     def assign_mission(self, m_id, a_id):
         #checks!!!
-        return 'mission assigned successfully.' if self.update_mission(m_id, {'assigned_agent_id':a_id}) else 'could not assign mission to agent'
+        assign = self.update_mission(m_id, {'assigned_agent_id':a_id})
+        update_status = self.update_mission_status(m_id, 'ASSIGNED')
+        return 'mission assigned successfully.' if assign and self.update_mission_status else 'could not assign mission to agent'
+    
+    def update_mission_status(self, id, status):
+        #checks!!!
+        return 'status updated successfully.' if self.update_mission(id, {'status':status}) else 'could not assign mission to agent'
     
 
-
-
+    def get_open_missions_by_agent(self, id):
+        conn, cursor = self.get_connection_with_db()
+        cursor.execute(f"""SELECT * FROM missions WHERE STATUS LIKE '%SS%';""")
+        row = cursor.fetchall()
+        cursor.close()
+        conn.close()
+        return row
 
     def calculate_risk_level(self, difficulty, importance):
         risk = 2 * difficulty + importance
@@ -90,8 +101,8 @@ class DB_Mission:
 if __name__ == "__main__":
 
     ms = DB_Mission()
-    mission = ms.create_mission({'title':'Yoni','description': 'LEV', 
-                                'location': 'Jerusalem', 'difficulty': 5, 'importance': 5})
-    print(mission)
-    print(ms.get_all_mission())
-    print(ms.get_mission_by_id(4))
+    #mission = ms.create_mission({'title':'Yoni','description': 'LEV', 
+                                #'location': 'Jerusalem', 'difficulty': 5, 'importance': 5})
+    #print(mission)
+    print(ms.get_open_missions_by_agent(5))
+    print(ms.assign_mission(3,5))

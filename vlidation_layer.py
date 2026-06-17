@@ -19,7 +19,11 @@ class ValidateData:
                 obj = mission_db.DB_Mission()
                 object = obj.update_mission(id, data)
         except ValueError as e:
+            conn.close()
+            cursor.close()
             raise
+        conn.close()
+        cursor.close()
         return object
 
 
@@ -34,6 +38,10 @@ class ValidateData:
         ag = agent_db.DB_Agent()
         agent = ag.get_agent_by_id(a_id)
         mission = ms.get_mission_by_id(m_id)
+
+        conn.close()
+        cursor.close()
+
         if agent['is_active'] == False:
             raise ValueError(f'Non active agent cant be assigned with missions')
         
@@ -54,6 +62,8 @@ class ValidateData:
         conn,cursor = self.get_connection_with_db()
         cursor.execute(f"select * from {db} WHERE id = %s", (id,))
         row = cursor.fetchone()
+        conn.close()
+        cursor.close()
         if row is None:
             return False
         return True
@@ -61,8 +71,12 @@ class ValidateData:
 
     def get_active_member_opend_missions(self, id):
         conn,cursor = self.get_connection_with_db()
-        cursor.execute(f"select COUNT(*) as count from missions WHERE id = %s AND status LIKE %SS%", (id,))
+        cursor.execute(f"""select COUNT(*) as count
+                       from missions 
+                       WHERE id = %s AND status LIKE '%SS%' """, (id,))
         row = cursor.fetchone()
+        conn.close()
+        cursor.close()
         if row['count'] <= 3:
             return True
         return False
@@ -77,4 +91,4 @@ class ValidateData:
         return conn, cursor
     
 val = ValidateData()
-print(val.check_assign_mission(3, 2))
+print(val.check_assign_mission(4, 4))

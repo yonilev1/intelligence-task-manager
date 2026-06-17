@@ -1,10 +1,10 @@
-import connection_db as cdb
+from database import connection_db as cdb
 import mysql.connector
 
 connection = cdb.Db_Connection()
 class DB_Mission:
     def create_mission(self, data: dict):
-        conn, cursor = self.get_connrection_with_db()
+        conn, cursor = self.get_connection_with_db()
         risk_level = self.calculate_risk_level(data['difficulty'], data['importance'])
         cursor.execute("""
             INSERT INTO missions (title, description, location, difficulty, importance, status, risk_level)
@@ -22,56 +22,46 @@ class DB_Mission:
         return new_object
     
 
-    def get_all_agents(self):
-        '''conn = connection.get_connection()
-        cursor = conn.cursor(dictionary=True)
-        cursor.execute("USE Intelligence_db")
-        cursor.close()
-
-        cursor = conn.cursor(dictionary=True)'''
-        conn, cursor = self.get_connrection_with_db()
-        cursor.execute("""SELECT * FROM agents;""")
+    def get_all_mission(self):
+        conn, cursor = self.get_connection_with_db()
+        cursor.execute("""SELECT * FROM missions;""")
         row = cursor.fetchall()
         cursor.close()
         conn.close()
         return row
     
 
-    def get_agent_by_id(self, agent_id):
-        '''conn = connection.get_connection()
-        cursor = conn.cursor(dictionary=True)
-        cursor.execute("USE Intelligence_db")
-        cursor.close()
-
-        cursor = conn.cursor(dictionary=True)'''
-        conn, cursor = self.get_connrection_with_db()
-        cursor.execute("""SELECT * FROM agents WHERE id = %s;""", (agent_id,))
+    def get_mission_by_id(self, mission_id):
+        conn, cursor = self.get_connection_with_db()
+        cursor.execute("""SELECT * FROM missions WHERE id = %s;""", (mission_id,))
         row = cursor.fetchone()
         cursor.close()
         conn.close()
         return row
 
 
-    def update_agent(self, agent_id, data):
-        '''conn = connection.get_connection()
-        cursor = conn.cursor(dictionary=True)
-        cursor.execute("USE Intelligence_db")
-        cursor.close()'''
+    def update_mission(self, mission_id, data):
         #To Do IN tests - if not data, if id does not exist
         parts = [f'{key} = %s' for key in data.keys()]
         parts_in_str = (', '.join(parts))
-        parsed_data = list(data.values()) + [agent_id]
+        parsed_data = list(data.values()) + [mission_id]
 
         #cursor = conn.cursor(dictionary=True)
-        conn, cursor = self.get_connrection_with_db()
+        conn, cursor = self.get_connection_with_db()
         cursor.execute(f"""
-        UPDATE agents SET {parts_in_str} WHERE id = %s
+        UPDATE missions SET {parts_in_str} WHERE id = %s
         """, parsed_data)
         did_update = cursor.rowcount
         conn.commit()
         cursor.close()
         conn.close()
-        return 'Agent updated successfuly.' if did_update else 'could not update agent.'
+        return did_update
+    
+    
+
+    def assign_mission(self, m_id, a_id):
+        #checks!!!
+        return 'mission assigned successfully.' if self.update_mission(m_id, {'assigned_agent_id':a_id}) else 'could not assign mission to agent'
     
 
 
@@ -85,7 +75,7 @@ class DB_Mission:
         return 'CRITICAL'
 
 
-    def get_connrection_with_db(self):
+    def get_connection_with_db(self):
         conn = connection.get_connection()
         cursor = conn.cursor(dictionary=True)
         cursor.execute("USE Intelligence_db")
@@ -93,8 +83,15 @@ class DB_Mission:
 
         cursor = conn.cursor(dictionary=True)
         return conn, cursor
+    
+
+
 #title, description, location, difficulty, importance, status, risk_level) 
-ms = DB_Mission()
-mission = ms.create_mission({'title':'Yoni','description': 'LEV', 
-                             'location': 'Jerusalem', 'difficulty': 5, 'importance': 5})
-print(mission)
+if __name__ == "__main__":
+
+    ms = DB_Mission()
+    mission = ms.create_mission({'title':'Yoni','description': 'LEV', 
+                                'location': 'Jerusalem', 'difficulty': 5, 'importance': 5})
+    print(mission)
+    print(ms.get_all_mission())
+    print(ms.get_mission_by_id(4))

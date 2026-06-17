@@ -1,15 +1,9 @@
-import connection_db as cdb
+from database import connection_db as cdb
 import mysql.connector
 
 connection = cdb.Db_Connection()
 class DB_Agent:
     def create_agent(self, data: dict):
-        '''conn = connection.get_connection()
-        cursor = conn.cursor(dictionary=True)
-        cursor.execute("USE Intelligence_db")
-        cursor.close()
-
-        cursor = conn.cursor(dictionary=True)'''
         conn, cursor = self.get_connrection_with_db()
         try:
             cursor.execute("""
@@ -28,12 +22,6 @@ class DB_Agent:
     
 
     def get_all_agents(self):
-        '''conn = connection.get_connection()
-        cursor = conn.cursor(dictionary=True)
-        cursor.execute("USE Intelligence_db")
-        cursor.close()
-
-        cursor = conn.cursor(dictionary=True)'''
         conn, cursor = self.get_connrection_with_db()
         cursor.execute("""SELECT * FROM agents;""")
         row = cursor.fetchall()
@@ -43,12 +31,6 @@ class DB_Agent:
     
 
     def get_agent_by_id(self, agent_id):
-        '''conn = connection.get_connection()
-        cursor = conn.cursor(dictionary=True)
-        cursor.execute("USE Intelligence_db")
-        cursor.close()
-
-        cursor = conn.cursor(dictionary=True)'''
         conn, cursor = self.get_connrection_with_db()
         cursor.execute("""SELECT * FROM agents WHERE id = %s;""", (agent_id,))
         row = cursor.fetchone()
@@ -58,10 +40,6 @@ class DB_Agent:
 
 
     def update_agent(self, agent_id, data):
-        '''conn = connection.get_connection()
-        cursor = conn.cursor(dictionary=True)
-        cursor.execute("USE Intelligence_db")
-        cursor.close()'''
         #To Do IN tests - if not data, if id does not exist
         parts = [f'{key} = %s' for key in data.keys()]
         parts_in_str = (', '.join(parts))
@@ -168,11 +146,11 @@ class DB_Agent:
 
 
 
-
-obj = DB_Agent()
-obj_con = obj.create_agent({'name':"YONI", 'specialty':'CODER', 'agent_rank':'Senior'})
-print((obj.get_all_agents()))
-print(obj.get_agent_by_id(3))
-print(obj.deactivate_agent(1))
-print(obj.get_agent_performance(3))
-print(obj.count_active_agents())
+if __name__ == "__main__":
+    obj = DB_Agent()
+    obj_con = obj.create_agent({'name':"YONI", 'specialty':'CODER', 'agent_rank':'Senior'})
+    print((obj.get_all_agents()))
+    print(obj.get_agent_by_id(3))
+    print(obj.deactivate_agent(1))
+    print(obj.get_agent_performance(3))
+    print(obj.count_active_agents())

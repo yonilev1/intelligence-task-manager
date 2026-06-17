@@ -2,7 +2,7 @@ import connection_db as cdb
 import mysql.connector
 
 connection = cdb.Db_Connection()
-class DB_connection:
+class DB_Agent:
     def create_agent(self, data: dict):
         '''conn = connection.get_connection()
         cursor = conn.cursor(dictionary=True)
@@ -169,7 +169,7 @@ class DB_connection:
 
 
 
-obj = DB_connection()
+obj = DB_Agent()
 obj_con = obj.create_agent({'name':"YONI", 'specialty':'CODER', 'agent_rank':'Senior'})
 print((obj.get_all_agents()))
 print(obj.get_agent_by_id(3))

@@ -63,7 +63,7 @@ class Db_Connection:
             location VARCHAR(50) NOT NULL,
             difficulty INT NOT NULL CHECK (difficulty >= 1 AND difficulty <= 10), 
             importance INT NOT NULL CHECK (importance >= 1 AND importance <= 10),
-            status VARCHAR(11) NOT NULL,
+            status ENUM('NEW', 'ASSIGNED', 'IN_PROGRESS', 'COMPLETED', 'FAILED', 'CANCELLED') NOT NULL,
             risk_level VARCHAR(8) NOT NULL,             
             assigned_agent_id INT DEFAULT NULL);
         """)

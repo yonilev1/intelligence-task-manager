@@ -4,12 +4,13 @@ import mysql.connector
 connection = cdb.Db_Connection()
 class DB_connection:
     def create_agent(self, data: dict):
-        conn = connection.get_connection()
+        '''conn = connection.get_connection()
         cursor = conn.cursor(dictionary=True)
         cursor.execute("USE Intelligence_db")
         cursor.close()
 
-        cursor = conn.cursor(dictionary=True)
+        cursor = conn.cursor(dictionary=True)'''
+        conn, cursor = self.get_connrection_with_db()
         try:
             cursor.execute("""
             INSERT INTO agents (name, specialty, agent_rank) VALUES(%s, %s, %s);
@@ -27,12 +28,13 @@ class DB_connection:
     
 
     def get_all_agents(self):
-        conn = connection.get_connection()
+        '''conn = connection.get_connection()
         cursor = conn.cursor(dictionary=True)
         cursor.execute("USE Intelligence_db")
         cursor.close()
 
-        cursor = conn.cursor(dictionary=True)
+        cursor = conn.cursor(dictionary=True)'''
+        conn, cursor = self.get_connrection_with_db()
         cursor.execute("""SELECT * FROM agents;""")
         row = cursor.fetchall()
         cursor.close()
@@ -41,12 +43,13 @@ class DB_connection:
     
 
     def get_agent_by_id(self, agent_id):
-        conn = connection.get_connection()
+        '''conn = connection.get_connection()
         cursor = conn.cursor(dictionary=True)
         cursor.execute("USE Intelligence_db")
         cursor.close()
 
-        cursor = conn.cursor(dictionary=True)
+        cursor = conn.cursor(dictionary=True)'''
+        conn, cursor = self.get_connrection_with_db()
         cursor.execute("""SELECT * FROM agents WHERE id = %s;""", (agent_id,))
         row = cursor.fetchone()
         cursor.close()
@@ -55,16 +58,17 @@ class DB_connection:
 
 
     def update_agent(self, agent_id, data):
-        conn = connection.get_connection()
+        '''conn = connection.get_connection()
         cursor = conn.cursor(dictionary=True)
         cursor.execute("USE Intelligence_db")
-        cursor.close()
+        cursor.close()'''
         #To Do IN tests - if not data, if id does not exist
         parts = [f'{key} = %s' for key in data.keys()]
         parts_in_str = (', '.join(parts))
         parsed_data = list(data.values()) + [agent_id]
 
-        cursor = conn.cursor(dictionary=True)
+        #cursor = conn.cursor(dictionary=True)
+        conn, cursor = self.get_connrection_with_db()
         cursor.execute(f"""
         UPDATE agents SET {parts_in_str} WHERE id = %s
         """, parsed_data)
@@ -83,13 +87,14 @@ class DB_connection:
     
 
     def increment_completed(self, agent_id):
-        conn = connection.get_connection()
+        '''conn = connection.get_connection()
         cursor = conn.cursor(dictionary=True)
         cursor.execute("USE Intelligence_db")
         cursor.close()
 
         #check that ID exists else error
-        cursor = conn.cursor(dictionary=True)
+        cursor = conn.cursor(dictionary=True)'''
+        conn, cursor = self.get_connrection_with_db()
         cursor.execute(f"""SELECT completed_missions AS cm FROM agents WHERE id = %s;""",(agent_id,))
         complete_number = cursor.fetchone()
         try:
@@ -99,13 +104,14 @@ class DB_connection:
     
 
     def increment_failed(self, agent_id):
-        conn = connection.get_connection()
+        '''conn = connection.get_connection()
         cursor = conn.cursor(dictionary=True)
         cursor.execute("USE Intelligence_db")
         cursor.close()
 
         #check that ID exists else error
-        cursor = conn.cursor(dictionary=True)
+        cursor = conn.cursor(dictionary=True)'''
+        conn, cursor = self.get_connrection_with_db()
         cursor.execute(f"""SELECT failed_missions AS fm FROM agents WHERE id = %s;""",(agent_id,))
         failed_number = cursor.fetchone()
         try:
@@ -115,13 +121,14 @@ class DB_connection:
 
     
     def get_agent_performance(self, agent_id):
-        conn = connection.get_connection()
+        '''conn = connection.get_connection()
         cursor = conn.cursor(dictionary=True)
         cursor.execute("USE Intelligence_db")
         cursor.close()
 
         #check that ID exists else error
-        cursor = conn.cursor(dictionary=True)
+        cursor = conn.cursor(dictionary=True)'''
+        conn, cursor = self.get_connrection_with_db()
         cursor.execute(f"""SELECT completed_missions, failed_missions FROM agents WHERE id = %s;""",(agent_id,))
         row = cursor.fetchone()
         cursor.close()
@@ -134,12 +141,13 @@ class DB_connection:
     
 
     def count_active_agents(self):
-        conn = connection.get_connection()
+        '''conn = connection.get_connection()
         cursor = conn.cursor(dictionary=True)
         cursor.execute("USE Intelligence_db")
         cursor.close()
 
-        cursor = conn.cursor(dictionary=True)
+        cursor = conn.cursor(dictionary=True)'''
+        conn, cursor = self.get_connrection_with_db()
         cursor.execute(f"""SELECT COUNT(*) AS count FROM agents
                        WHERE is_active = True
                        GROUP BY is_active;""")
@@ -149,9 +157,22 @@ class DB_connection:
         return row['count']
 
 
+    def get_connrection_with_db(self):
+        conn = connection.get_connection()
+        cursor = conn.cursor(dictionary=True)
+        cursor.execute("USE Intelligence_db")
+        cursor.close()
+
+        cursor = conn.cursor(dictionary=True)
+        return conn, cursor
+
 
 
 
 obj = DB_connection()
-#obj_con = obj.create_agent({'name':"YONI", 'specialty':'CODER', 'agent_rank':'Senior'})
-print((obj.count_active_agents()))
+obj_con = obj.create_agent({'name':"YONI", 'specialty':'CODER', 'agent_rank':'Senior'})
+print((obj.get_all_agents()))
+print(obj.get_agent_by_id(3))
+print(obj.deactivate_agent(1))
+print(obj.get_agent_performance(3))
+print(obj.count_active_agents())

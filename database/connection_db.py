@@ -1,6 +1,6 @@
 import mysql.connector
 
-class DbConnection:
+class Db_Connection:
     def __init__(self):
         self.user='root'
         self.password='1234'
@@ -70,7 +70,7 @@ class DbConnection:
 
 
 if __name__ == "__main__":
-    conn = DbConnection()
+    conn = Db_Connection()
     cr_db = conn.create_database()
     print(cr_db)
     cr_tbl = conn.create_tables()

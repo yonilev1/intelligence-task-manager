@@ -1,15 +1,21 @@
 import mysql.connector
 
 class DbConnection:
+    def __init__(self):
+        self.user='root'
+        self.password='1234'
+        self.port=3306
+        self.host='127.0.0.1'
+
     def get_connection(self):
         """
         return the connection
         """
         return mysql.connector.connect(
-            user='root',
-            password='1234',
-            port=3306,
-            host='127.0.0.1'
+            user=self.user,
+            password=self.password,
+            port=self.port,
+            host=self.host
         )
     
 
@@ -45,6 +51,21 @@ class DbConnection:
             completed_missions INT NOT NULL DEFAULT 0, 
             failed_missions INT NOT NULL DEFAULT 0,             
             agent_rank ENUM('Junior', 'Senior', 'Commander') NOT NULL);
+        """)
+        cursor.close()
+
+        cursor = conn.cursor()
+        cursor.execute("""
+        CREATE TABLE IF NOT EXISTS missions (
+            id INT AUTO_INCREMENT PRIMARY KEY,
+            title VARCHAR(50) NOT NULL,
+            description TEXT NOT NULL,
+            location VARCHAR(50) NOT NULL,
+            difficulty INT NOT NULL CHECK (difficulty >= 1 AND difficulty <= 10), 
+            importance INT NOT NULL CHECK (importance >= 1 AND importance <= 10),
+            status VARCHAR(11) NOT NULL,
+            risk_level VARCHAR(8) NOT NULL,             
+            assigned_agent_id INT DEFAULT NULL);
         """)
 
 

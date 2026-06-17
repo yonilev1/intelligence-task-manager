@@ -39,7 +39,19 @@ class DB_connection:
         conn.close()
         return row
     
+    def get_agent_by_id(self, agent_id):
+        conn = connection.get_connection()
+        cursor = conn.cursor(dictionary=True)
+        cursor.execute("USE Intelligence_db")
+        cursor.close()
+
+        cursor = conn.cursor(dictionary=True)
+        cursor.execute("""SELECT * FROM agents WHERE id = %s;""", (agent_id,))
+        row = cursor.fetchone()
+        cursor.close()
+        conn.close()
+        return row
 
 obj = DB_connection()
 #obj_con = obj.create_agent({'name':"YONI", 'specialty':'CODER', 'agent_rank':'Senior'})
-print((obj.get_all_agents()))
+print((obj.get_agent_by_id(54)))

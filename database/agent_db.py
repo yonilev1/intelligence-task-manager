@@ -131,6 +131,22 @@ class DB_connection:
                  'Completed': row['completed_missions'],
                  'Failed': row['failed_missions'],
                  'Success_rate': f'{success_rate * 100} %'}
+    
+
+    def count_active_agents(self):
+        conn = connection.get_connection()
+        cursor = conn.cursor(dictionary=True)
+        cursor.execute("USE Intelligence_db")
+        cursor.close()
+
+        cursor = conn.cursor(dictionary=True)
+        cursor.execute(f"""SELECT COUNT(*) AS count FROM agents
+                       WHERE is_active = True
+                       GROUP BY is_active;""")
+        row = cursor.fetchone()
+        cursor.close()
+        conn.close()
+        return row['count']
 
 
 
@@ -138,4 +154,4 @@ class DB_connection:
 
 obj = DB_connection()
 #obj_con = obj.create_agent({'name':"YONI", 'specialty':'CODER', 'agent_rank':'Senior'})
-print((obj.get_agent_performance(1)))
+print((obj.count_active_agents()))

@@ -94,6 +94,20 @@ class DB_Mission:
         conn.close()
         return row['count']
 
+
+    def count_by_status(self, status):
+        conn, cursor = self.get_connection_with_db()
+        cursor.execute(f"""SELECT COUNT(*) as count FROM missions
+                       GROUP BY status
+                       HAVING status = %s;""", (status,))
+        row = cursor.fetchone()
+        cursor.close()
+        conn.close()
+        if row is not None:
+            return row['count']
+        return row
+
+
     def get_connection_with_db(self):
         conn = connection.get_connection()
         cursor = conn.cursor(dictionary=True)
@@ -113,4 +127,4 @@ if __name__ == "__main__":
                                 #'location': 'Jerusalem', 'difficulty': 5, 'importance': 5})
     #print(mission)
     #print(ms.get_open_missions_by_agent(5))
-    print(ms.count_all_missions())
+    print(ms.count_by_status('gdw'))

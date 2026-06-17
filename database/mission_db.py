@@ -1,4 +1,4 @@
-from database import connection_db as cdb
+import connection_db as cdb
 import mysql.connector
 
 connection = cdb.Db_Connection()
@@ -86,6 +86,14 @@ class DB_Mission:
         return 'CRITICAL'
 
 
+    def count_all_missions(self):
+        conn, cursor = self.get_connection_with_db()
+        cursor.execute(f"""SELECT COUNT(*) as count FROM missions;""")
+        row = cursor.fetchone()
+        cursor.close()
+        conn.close()
+        return row['count']
+
     def get_connection_with_db(self):
         conn = connection.get_connection()
         cursor = conn.cursor(dictionary=True)
@@ -104,5 +112,5 @@ if __name__ == "__main__":
     #mission = ms.create_mission({'title':'Yoni','description': 'LEV', 
                                 #'location': 'Jerusalem', 'difficulty': 5, 'importance': 5})
     #print(mission)
-    print(ms.get_open_missions_by_agent(5))
-    print(ms.assign_mission(3,5))
+    #print(ms.get_open_missions_by_agent(5))
+    print(ms.count_all_missions())

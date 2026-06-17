@@ -6,10 +6,18 @@ class DbConnection:
             user='root',
             password='1234',
             port=3306,
-            host='127.0.0.1',
-            database='Intelligence_db'
+            host='127.0.0.1'
         )
     
+
+    def create_database(self):
+        conn = self.get_connection()
+        cursor = conn.cursor()
+        cursor.execute("""
+        CREATE DATABASE IF NOT EXISTS Intelligence_db;
+        """)
+
+    
 conn = DbConnection()
-get_conn = conn.get_connection()
-cursor = get_conn.cursor()
+cr = conn.create_database()
+print(cr)

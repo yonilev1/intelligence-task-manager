@@ -88,12 +88,32 @@ class DB_connection:
         cursor.execute("USE Intelligence_db")
         cursor.close()
 
+        #check that ID exists else error
         cursor = conn.cursor(dictionary=True)
         cursor.execute(f"""SELECT completed_missions AS cm FROM agents WHERE id = %s;""",(agent_id,))
         complete_number = cursor.fetchone()
-        return self.update_agent(agent_id, {'completed_missions': complete_number['cm'] + 1})
+        try:
+            return self.update_agent(agent_id, {'completed_missions': complete_number['cm'] + 1})
+        except TypeError as e:
+            raise
+    
+
+    def increment_failed(self, agent_id):
+        conn = connection.get_connection()
+        cursor = conn.cursor(dictionary=True)
+        cursor.execute("USE Intelligence_db")
+        cursor.close()
+
+        #check that ID exists else error
+        cursor = conn.cursor(dictionary=True)
+        cursor.execute(f"""SELECT failed_missions AS fm FROM agents WHERE id = %s;""",(agent_id,))
+        failed_number = cursor.fetchone()
+        try:
+            return self.update_agent(agent_id, {'failed_missions': failed_number['fm'] + 1})
+        except TypeError as e:
+            raise
 
 
 obj = DB_connection()
 #obj_con = obj.create_agent({'name':"YONI", 'specialty':'CODER', 'agent_rank':'Senior'})
-print((obj.increment_completed(543)))
+print((obj.increment_failed(5673)))

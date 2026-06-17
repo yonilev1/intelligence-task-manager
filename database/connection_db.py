@@ -47,7 +47,10 @@ class DbConnection:
             agent_rank ENUM('Junior', 'Senior', 'Commander') NOT NULL);
         """)
 
-    
-conn = DbConnection()
-cr = conn.create_tables()
-print(cr)
+
+if __name__ == "__main__":
+    conn = DbConnection()
+    cr_db = conn.create_database()
+    print(cr_db)
+    cr_tbl = conn.create_tables()
+    print(cr_tbl)

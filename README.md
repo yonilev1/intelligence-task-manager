@@ -72,6 +72,7 @@ classes:
             get_agent_by_id(id)	                Returns one agent by ID, or None
             
             update_agent(id, data)	            UPDATE for the entire row (cannot change id)
+            #To my understanding, you cant update 1 fuild but all of it together.
             
             deactivate_agent(id)	            Sets agent inactive status
             

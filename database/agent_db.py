@@ -39,6 +39,7 @@ class DB_connection:
         conn.close()
         return row
     
+
     def get_agent_by_id(self, agent_id):
         conn = connection.get_connection()
         cursor = conn.cursor(dictionary=True)
@@ -52,6 +53,29 @@ class DB_connection:
         conn.close()
         return row
 
+
+    def update_agent(self, agent_id, data):
+        conn = connection.get_connection()
+        cursor = conn.cursor(dictionary=True)
+        cursor.execute("USE Intelligence_db")
+        cursor.close()
+        #To Do IN tests - if not data, if id does not exist
+        parts = [f'{key} = %s' for key in data.keys()]
+        parts_in_str = (', '.join(parts))
+        parsed_data = list(data.values()) + [agent_id]
+
+        cursor = conn.cursor(dictionary=True)
+        cursor.execute(f"""
+        UPDATE agents SET {parts_in_str} WHERE id = %s
+        """, parsed_data)
+        did_update = cursor.rowcount
+        conn.commit()
+        cursor.close()
+        conn.close()
+        return 'Agent updated successfuly.' if did_update else 'could not update agent.'
+
+
 obj = DB_connection()
 #obj_con = obj.create_agent({'name':"YONI", 'specialty':'CODER', 'agent_rank':'Senior'})
-print((obj.get_agent_by_id(54)))
+print((obj.update_agent(3, {'name':"YONI", 'specialty':'CODER','is_active':True,
+                'completed_missions':0, 'failed_missions':0, 'agent_rank':'Junior'})))

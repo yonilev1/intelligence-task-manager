@@ -137,6 +137,17 @@ class DB_Mission:
         cursor.close()
         conn.close()
         return row['count']
+    
+
+    def get_top_agent(self):
+        conn, cursor = self.get_connection_with_db()
+        cursor.execute(f"""SELECT assigned_agent_id, COUNT(*) as count FROM missions
+                       WHERE status = 'COMPLETED'
+                       GROUP BY assigned_agent_id;""")
+        row = cursor.fetchall()
+        cursor.close()
+        conn.close()
+        return row[0]['assigned_agent_id']
 
 
 #title, description, location, difficulty, importance, status, risk_level) 
@@ -147,5 +158,6 @@ if __name__ == "__main__":
                                 #'location': 'Jerusalem', 'difficulty': 5, 'importance': 5})
     #print(mission)
     #print(ms.get_open_missions_by_agent(5))
-    ms.update_mission_status(5, 'CANCELLED')
-    print(ms.count_critical_missions())
+    ms.update_mission_status(4, 'COMPLETED')
+    print(ms.get_top_agent())
+    #print(ms.update_mission_status(4,'COMPLETED'))

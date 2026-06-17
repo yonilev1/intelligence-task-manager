@@ -73,9 +73,14 @@ class DB_connection:
         cursor.close()
         conn.close()
         return 'Agent updated successfuly.' if did_update else 'could not update agent.'
+    
 
+    def deactivate_agent(self, agent_id):
+        #To that active
+        if self.update_agent(agent_id, {'is_active':False}) == 'Agent updated successfuly.':
+            return 'Agent deactivated successfuly.'
+        return 'agent already deactivatred.'
 
 obj = DB_connection()
 #obj_con = obj.create_agent({'name':"YONI", 'specialty':'CODER', 'agent_rank':'Senior'})
-print((obj.update_agent(3, {'name':"YONI", 'specialty':'CODER','is_active':True,
-                'completed_missions':0, 'failed_missions':0, 'agent_rank':'Junior'})))
+print((obj.deactivate_agent(3)))

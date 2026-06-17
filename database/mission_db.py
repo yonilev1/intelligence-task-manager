@@ -127,6 +127,16 @@ class DB_Mission:
         cursor.close()
         conn.close()
         return row['count']
+    
+
+    def count_critical_missions(self):
+        conn, cursor = self.get_connection_with_db()
+        cursor.execute(f"""SELECT COUNT(*) as count FROM missions
+                       WHERE risk_level = 'CRITICAL';""")
+        row = cursor.fetchone()
+        cursor.close()
+        conn.close()
+        return row['count']
 
 
 #title, description, location, difficulty, importance, status, risk_level) 
@@ -138,4 +148,4 @@ if __name__ == "__main__":
     #print(mission)
     #print(ms.get_open_missions_by_agent(5))
     ms.update_mission_status(5, 'CANCELLED')
-    print(ms.count_open_missions())
+    print(ms.count_critical_missions())

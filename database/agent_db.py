@@ -80,7 +80,20 @@ class DB_connection:
         if self.update_agent(agent_id, {'is_active':False}) == 'Agent updated successfuly.':
             return 'Agent deactivated successfuly.'
         return 'agent already deactivatred.'
+    
+
+    def increment_completed(self, agent_id):
+        conn = connection.get_connection()
+        cursor = conn.cursor(dictionary=True)
+        cursor.execute("USE Intelligence_db")
+        cursor.close()
+
+        cursor = conn.cursor(dictionary=True)
+        cursor.execute(f"""SELECT completed_missions AS cm FROM agents WHERE id = %s;""",(agent_id,))
+        complete_number = cursor.fetchone()
+        return self.update_agent(agent_id, {'completed_missions': complete_number['cm'] + 1})
+
 
 obj = DB_connection()
 #obj_con = obj.create_agent({'name':"YONI", 'specialty':'CODER', 'agent_rank':'Senior'})
-print((obj.deactivate_agent(3)))
+print((obj.increment_completed(543)))

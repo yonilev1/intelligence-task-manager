@@ -9,7 +9,7 @@ class DB_connection:
         cursor.execute("USE Intelligence_db")
         cursor.close()
 
-        cursor = conn.cursor()
+        cursor = conn.cursor(dictionary=True)
         try:
             cursor.execute("""
             INSERT INTO agents (name, specialty, agent_rank) VALUES(%s, %s, %s);
@@ -26,6 +26,20 @@ class DB_connection:
         return new_object
     
 
+    def get_all_agents(self):
+        conn = connection.get_connection()
+        cursor = conn.cursor(dictionary=True)
+        cursor.execute("USE Intelligence_db")
+        cursor.close()
+
+        cursor = conn.cursor(dictionary=True)
+        cursor.execute("""SELECT * FROM agents;""")
+        row = cursor.fetchall()
+        cursor.close()
+        conn.close()
+        return row
+    
+
 obj = DB_connection()
-obj_con = obj.create_agent({'name':"YONI", 'specialty':'CODER', 'agent_rank':'f'})
-print(obj_con)
+#obj_con = obj.create_agent({'name':"YONI", 'specialty':'CODER', 'agent_rank':'Senior'})
+print((obj.get_all_agents()))

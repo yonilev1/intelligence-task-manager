@@ -69,12 +69,12 @@ class DB_Mission:
     
     def update_mission_status(self, id, status):
         #checks!!!
-        return self.update_mission(id, {'status':status})
+        self.update_mission(id, {'status':status})
     
 
     def get_open_missions_by_agent(self, id):
         conn, cursor = self.get_connection_with_db()
-        cursor.execute(f"""SELECT * FROM missions WHERE STATUS LIKE '%SS%';""")
+        cursor.execute(f"""SELECT * FROM missions WHERE id = %s AND (status = 'ASSIGNED' OR status = 'IN_PROGRESS');""")
         row = cursor.fetchall()
         cursor.close()
         conn.close()
@@ -107,7 +107,7 @@ class DB_Mission:
         conn.close()
         if row is not None:
             return row['count']
-        return row
+        return 0
 
 
     def get_connection_with_db(self):

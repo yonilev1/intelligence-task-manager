@@ -14,4 +14,14 @@ def get_report_summary():
             "open_missions" : mission_instance.count_open_missions(),
             "completed_missions" : mission_instance.count_completed_missions(),
             "failed_missions" : mission_instance.count_failed_missions(),
-            "critical_missions" : mission_instance.count_critical_missions()} }
+            "critical_missions" : mission_instance.count_critical_missions()}}
+
+
+@route.get('/reports/missions-by-status')
+def get_missions_by_status():
+    return {'message':'mission by status',
+            'data': {"open": mission_instance.count_by_status('IN_PROGRESS') + mission_instance.count_by_status('ASSIGNED'), 
+                     "in_progress": mission_instance.count_by_status('IN_PROGRESS'), 
+                     "completed": mission_instance.count_by_status('COMPLETED'), 
+                     "failed": mission_instance.count_by_status('FAILED'), 
+                     "canceled": mission_instance.count_by_status('CANCELLED')}}

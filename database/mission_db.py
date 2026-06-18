@@ -24,7 +24,7 @@ class DB_Mission:
         return new_object
     
 
-    def get_all_mission(self):
+    def get_all_missions(self):
         conn, cursor = self.get_connection_with_db()
         cursor.execute("""SELECT * FROM missions;""")
         row = cursor.fetchall()

@@ -27,7 +27,7 @@ def create_mission(mission:CreateAndUpdateMission):
 
 @route.get('/missions')
 def get_all_missions():
-    return mission_instance.get_all_missions()
+    return {'messagem':'all missions', 'data':mission_instance.get_all_missions()}
 
 
 @route.get('/missions/{id}')

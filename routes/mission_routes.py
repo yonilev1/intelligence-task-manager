@@ -96,5 +96,21 @@ def fail_mission(id:int):
                 agent_instance.increment_failed(mission_instance.get_mission_by_id(id)['assigned_agent_id'])
                 return 'FAILED'
             raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST)
+
+
+@route.put('/missions/{id}/cancel')
+def cancel_mission(id:int):
+            try:
+                can_cancel = validate.check_cancel_mission(id)
+            except KeyError as e:
+                raise HTTPException(status_code=status.HTTP_404_NOT_FOUND)
+            except ValueError as e:
+                raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST)
+
+            if can_cancel:
+                mission_instance.update_mission_status(id, 'CANCELLED')
+                return 'CANCELLED'
+            raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST)
+           
            
                  

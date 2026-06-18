@@ -11,14 +11,18 @@ we can add, edit, change status, assigne to agent. can get all missions or one b
 
 file structur:
 
-    intelligence-task-manager/
-    ├── database/
-    │   ├── db_connection.py
-    │   ├── agent_db.py
-    │   └── mission_db.py
-    ├── README.md
-    ├── requirements.txt
-    └── .gitignore
+    intelligence-task-manager/ 
+    ├── main.py               
+    ├── database/             
+    ├── routes/           
+    │   ├── agent_routes.py 
+    │   ├── mission_routes.py 
+    │   └── report_routes.py 
+    ├── logs/               
+    │   └── app.log 
+    ├── README.md             
+    └── requirements.txt 
+    |__validation_layer.py
 
 Tables:
 
@@ -125,6 +129,31 @@ classes:
             create_tables()	                    Creates both tables if they do not exist.
 
 
+    Routes:
+
+        agent routs:
+                [POST]/agents               Create new agent
+                [GET] /agents               All agents
+                [GET] /agents/{id}          by agent ID
+                [PUT] /agents/{id}          Update agent
+                [PUT] /agents/{id}/deactivate Deactivate agent
+                [GET] /agents/{id}/performance Agent performance 
+
+        mission routs:
+            [POST]/missions                 Create a task
+            [GET] /missions                 All tasks
+            [GET] /missions/{id}            by task ID
+            [PUT] /missions/{id}/assign/{agent_id} (explained in Tests 6) Assign agent
+            [PUT] /missions/{id}/           start Start a task
+            [PUT] /missions/{id}/complete   Successfully complete
+            [PUT] /missions/{id}/fail       Failed to complete
+            [PUT] /missions/{id}/cancel     Task in 
+
+        report routs:
+            [POST] /reports/summary           Report Rules System
+            [GET] /reports/missions-by-status Status by Missions
+            [GET] /reports/top-agent          Top Agent
+
 DATA ROOLS:
 
     1: rank must be Junior / Senior / Commander — any other value throws an error.
@@ -147,6 +176,15 @@ DATA ROOLS:
     
     10: Only a task with the status NEW or ASSIGNED can be canceled — otherwise an error.
 
+
+SYSTEM FLOAW:
+
+    1:create agent using endpoint create_agent
+    2:create mission usin endpoint create mission
+    3:assign mission to agent using endpoint assign
+    4:start mission using endpoint start mission
+    5:complete/failed mission using end endpoint
+    6:get reports using get report endpoint
 
 DOCKER:
 
@@ -177,6 +215,11 @@ how to run DB layer:
         in terminal, in file intelligence-task-manager (C:\...\...\intelligence-task-manager):
             run: cd database
             then: python connection_db.py
+
+how ro run server:
+
+    1: python main.py
+    2: in terminal: uvicorn main:app 127.0.0.1 --reload
 
 
 

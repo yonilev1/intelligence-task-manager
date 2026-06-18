@@ -511,3 +511,18 @@
 2026-06-18 16:22:13,372 | ERROR | mission does not exist
 2026-06-18 16:22:40,028 | INFO | in endpoint assign_mission_to_agent
 2026-06-18 16:22:40,029 | INFO | accessing db to validate mission and agent
+2026-06-18 16:23:19,355 | INFO | in endpoint assign_mission_to_agent
+2026-06-18 16:23:19,358 | INFO | accessing db to validate mission and agent
+2026-06-18 16:23:19,528 | INFO | accessing db to assign mission to agent
+2026-06-18 16:23:19,644 | INFO | mission assigned
+2026-06-18 16:23:34,105 | INFO | in endpoint start_mission
+2026-06-18 16:23:34,106 | INFO | accessing db to validate mission
+2026-06-18 16:23:34,165 | INFO | accessing db to assign mission to agent
+2026-06-18 16:23:34,234 | INFO | mission started
+2026-06-18 16:23:39,604 | INFO | in endpoint complete_mission
+2026-06-18 16:23:39,604 | INFO | accessing db to validate mission
+2026-06-18 16:23:39,668 | INFO | accessing db to COMPLETED mission
+2026-06-18 16:23:39,809 | INFO | mission COMPLETED
+2026-06-18 16:23:44,722 | INFO | in endpoint fail_mission
+2026-06-18 16:23:44,722 | INFO | accessing db to validate mission
+2026-06-18 16:23:44,785 | ERROR | data not currect for mission

@@ -52,3 +52,10 @@ def deactivate_agent(id:int):
     if not validate.check_id_exsits(id, 'agents'):
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND)
     agent_instance.deactivate_agent(id)
+
+
+@route.get('/agents/{id}/performance')
+def get_agent_performance(id:int):
+    if not validate.check_id_exsits(id, 'agents'):
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND)
+    return {'message':'agents performance', 'data':agent_instance.get_agent_performance(id)}

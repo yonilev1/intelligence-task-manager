@@ -42,6 +42,9 @@ class ValidateData:
         conn.close()
         cursor.close()
 
+        if mission['status'] !='NEW':
+            raise ValueError(f'Mission not available')
+
         if agent['is_active'] == False:
             raise ValueError(f'Agent is not active ')
         
@@ -50,9 +53,6 @@ class ValidateData:
         
         if mission['risk_level'] =='CRITICAL' and agent['agent_rank'] != 'Commander':
             raise ValueError(f' Only Commander can handle critical missions')
-        
-        if mission['status'] !='NEW':
-            raise ValueError(f'Mission not available')
 
         return True
 

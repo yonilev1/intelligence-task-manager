@@ -6,12 +6,14 @@ class DB_Mission:
     def create_mission(self, data: dict):
         conn, cursor = self.get_connection_with_db()
         risk_level = self.calculate_risk_level(data['difficulty'], data['importance'])
-        cursor.execute("""
-            INSERT INTO missions (title, description, location, difficulty, importance, status, risk_level)
-                           VALUES(%s, %s, %s, %s, %s, %s, %s);
-            """, (data['title'], data['description'], data['location'],
-                   data['difficulty'], data['importance'], 'NEW', risk_level))
-            
+        try:
+            cursor.execute("""
+                INSERT INTO missions (title, description, location, difficulty, importance, status, risk_level)
+                            VALUES(%s, %s, %s, %s, %s, %s, %s);
+                """, (data['title'], data['description'], data['location'],
+                    data['difficulty'], data['importance'], 'NEW', risk_level))
+        except mysql.connector.errors.DatabaseError as e: 
+            raise ValueError
         row_id = cursor.lastrowid
         new_object = {'id':row_id, 'title':data['title'], 'description':data['description'], 
                         'location':data['location'], 'difficulty':data['difficulty'],

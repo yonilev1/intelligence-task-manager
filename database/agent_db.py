@@ -14,7 +14,7 @@ class DB_Agent:
                         'is_active':True, 'completed_missions':0,
                             'failed_missions':0, 'agent_rank':data['agent_rank']}
         except mysql.connector.errors.DatabaseError as e: 
-            raise ValueError(f'agent rank should by one of 3 types, not {data['agent_rank']}')
+            raise ValueError
         conn.commit()
         cursor.close()
         conn.close()

@@ -7,10 +7,10 @@ class DB_Agent:
         conn, cursor = self.get_connrection_with_db()
         try:
             cursor.execute("""
-            INSERT INTO agents (name, specialty, agent_rank) VALUES(%s, %s, %s);
-            """, (data['name'], data['specialty'], data['agent_rank']))
+            INSERT INTO agents (name, speciality, agent_rank) VALUES(%s, %s, %s);
+            """, (data['name'], data['speciality'], data['agent_rank']))
             row_id = cursor.lastrowid
-            new_object = {'id':row_id, 'name':data['name'], 'specialty':data['specialty'], 
+            new_object = {'id':row_id, 'name':data['name'], 'speciality':data['speciality'], 
                         'is_active':True, 'completed_missions':0,
                             'failed_missions':0, 'agent_rank':data['agent_rank']}
         except mysql.connector.errors.DatabaseError as e: 

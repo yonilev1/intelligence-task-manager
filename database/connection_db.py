@@ -46,7 +46,7 @@ class Db_Connection:
         CREATE TABLE IF NOT EXISTS agents (
             id INT AUTO_INCREMENT PRIMARY KEY,
             name VARCHAR(50) NOT NULL,
-            specialty VARCHAR(50) NOT NULL,
+            speciality VARCHAR(50) NOT NULL,
             is_active BOOLEAN NOT NULL DEFAULT TRUE,
             completed_missions INT NOT NULL DEFAULT 0, 
             failed_missions INT NOT NULL DEFAULT 0,             

@@ -15,7 +15,7 @@ class DB_Agent:
                         'is_active':True, 'completed_missions':0,
                             'failed_missions':0, 'agent_rank':data['agent_rank']}
         except mysql.connector.errors.DatabaseError as e: 
-            raise ValueError
+            raise ValueError(e)
         conn.commit()
         cursor.close()
         conn.close()
@@ -53,7 +53,7 @@ class DB_Agent:
             UPDATE agents SET {parts_in_str} WHERE id = %s
             """, parsed_data)
         except mysql.connector.errors.DatabaseError as e: 
-            raise ValueError
+            raise ValueError(e)
         did_update = cursor.rowcount
         conn.commit()
         cursor.close()

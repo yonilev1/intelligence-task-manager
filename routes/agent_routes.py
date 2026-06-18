@@ -24,7 +24,7 @@ def create_agent(agent:CreateAndUpdateAgent):
         created = agent_instance.create_agent(agent_dict)
     except ValueError as e:
         my_logger.error('rank shoulde by only one of - [Junior, Senior, Commander]')
-        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST)
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail= 'rank shoulde by only one of - [Junior, Senior, Commander]')
     my_logger.info('agent addedd successfully')
     return {'message': 'Agent Created', 'data':created}
 
@@ -47,7 +47,7 @@ def get_agent_by_id(id:int):
     agent = agent_instance.get_agent_by_id(id)
     if not agent:
         my_logger.error('agent does not exist')
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND)
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail='Agent Not Found')
     my_logger.info('returning agent')
     return {'message': 'agent', 'data':agent}
 
@@ -58,14 +58,14 @@ def update_agent(id:int, agent:CreateAndUpdateAgent):
     my_logger.info('accessing db to validate agent')
     if not validate.check_id_exsits(id, 'agents'):
         my_logger.error('agent does not exist')
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND)
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail='Agent Not Found')
     agent_dict = agent.model_dump()
     try:
         my_logger.info('accessing db to update agent')
         updated = agent_instance.update_agent(id, agent_dict)
     except ValueError as e:
         my_logger.error('data not currect for update')
-        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST)
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail= 'rank shoulde by only one of - [Junior, Senior, Commander]')
     
     my_logger.info('updated agent')
 
@@ -76,7 +76,7 @@ def deactivate_agent(id:int):
     my_logger.info('accessing db to validate agent')
     if not validate.check_id_exsits(id, 'agents'):
         my_logger.error('agent does not exist')
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND)
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail='Agent Not Found')
     my_logger.info('accessing db to deactivate agent')
     agent_instance.deactivate_agent(id)
     my_logger.info('deactivated agent')
@@ -88,6 +88,6 @@ def get_agent_performance(id:int):
     my_logger.info('accessing db to validate agent')
     if not validate.check_id_exsits(id, 'agents'):
         my_logger.error('agent does not exist')
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND)
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail='Agent Not Found')
     my_logger.info('return agent performance')
     return {'message':'agents performance', 'data':agent_instance.get_agent_performance(id)}

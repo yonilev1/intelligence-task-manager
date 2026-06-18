@@ -26,7 +26,7 @@ def create_mission(mission:CreateAndUpdateMission):
         created = mission_instance.create_mission(mission_dict)
     except ValueError as e:
         my_logger.error('importance and difficulty shoulde by only 1-10')
-        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST)
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail= 'importance and difficulty shoulde by only 1-10')
     my_logger.info('mission addedd successfully')
     return {'message': 'mission Created', 'data':created}
 
@@ -49,7 +49,7 @@ def get_mission_by_id(id:int):
     mission = mission_instance.get_mission_by_id(id)
     if not mission:
         my_logger.error('mission does not exist')
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND)
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail='Mission Not Found')
     my_logger.info('returning mission')
     return {'message':'mission', 'data':mission_instance.get_mission_by_id(id)}
 
@@ -81,10 +81,10 @@ def start_mission(id:int):
                 can_start = validate.check_start_mission(id)
             except KeyError as e:
                 my_logger.error('mission does not exist')
-                raise HTTPException(status_code=status.HTTP_404_NOT_FOUND)
+                raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail='Mission Not Found')
             except ValueError as e:
                 my_logger.error('data not currect for mission')
-                raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST)
+                raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail= str(e))
 
             if can_start:
                 my_logger.info('accessing db to assign mission to agent')
@@ -93,7 +93,7 @@ def start_mission(id:int):
                 return 'IN_PROGRESS'
             
             my_logger.error('data not currect for mission')
-            raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST)
+            raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail= str(e))
 
 
 @route.put('/missions/{id}/complete')
@@ -104,10 +104,10 @@ def complete_mission(id:int):
                 can_complete = validate.check_finish_mission(id)
             except KeyError as e:
                 my_logger.error('mission does not exist')
-                raise HTTPException(status_code=status.HTTP_404_NOT_FOUND)
+                raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail='Mission Not Found')
             except ValueError as e:
                 my_logger.error('data not currect for mission')
-                raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST)
+                raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail= str(e))
 
             if can_complete:
                 my_logger.info('accessing db to COMPLETED mission')
@@ -116,7 +116,7 @@ def complete_mission(id:int):
                 my_logger.info('mission COMPLETED')
                 return 'COMPLETED'
             my_logger.error('data not currect for mission')            
-            raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST)
+            raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail= str(e))
 
 
 @route.put('/missions/{id}/fail')
@@ -127,10 +127,10 @@ def fail_mission(id:int):
                 can_fail = validate.check_finish_mission(id)
             except KeyError as e:
                 my_logger.error('mission does not exist')
-                raise HTTPException(status_code=status.HTTP_404_NOT_FOUND)
+                raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail='Mission Not Found')
             except ValueError as e:
                 my_logger.error('data not currect for mission')
-                raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST)
+                raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail= str(e))
 
             if can_fail:
                 my_logger.info('accessing db to FAILED mission')
@@ -139,7 +139,7 @@ def fail_mission(id:int):
                 my_logger.info('mission FAILED')
                 return 'FAILED'
             my_logger.error('data not currect for mission')
-            raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST)
+            raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail= str(e))
 
 
 @route.put('/missions/{id}/cancel')
@@ -150,10 +150,10 @@ def cancel_mission(id:int):
                 can_cancel = validate.check_cancel_mission(id)
             except KeyError as e:
                 my_logger.error('mission does not exist')
-                raise HTTPException(status_code=status.HTTP_404_NOT_FOUND)
+                raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail='Mission Not Found')
             except ValueError as e:
                 my_logger.error('data not currect for mission')
-                raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST)
+                raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail= str(e))
 
             if can_cancel:
                 my_logger.info('accessing db to CANCELLED mission')
@@ -161,7 +161,7 @@ def cancel_mission(id:int):
                 my_logger.info('mission CANCELLED')
                 return 'CANCELLED'
             my_logger.error('data not currect for mission')
-            raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST)
+            raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail= str(e))
            
            
                  

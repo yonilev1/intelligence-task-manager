@@ -69,7 +69,7 @@ class DB_Mission:
     
     def update_mission_status(self, id, status):
         #checks!!!
-        return 'status updated successfully.' if self.update_mission(id, {'status':status}) else 'could not assign mission to agent'
+        return self.update_mission(id, {'status':status})
     
 
     def get_open_missions_by_agent(self, id):

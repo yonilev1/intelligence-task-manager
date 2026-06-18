@@ -58,7 +58,7 @@ class ValidateData:
 
 
     def check_start_mission(self, m_id):
-            if self.check_id_exsits(m_id, 'missions') is None:
+            if not self.check_id_exsits(m_id, 'missions'):
                 raise KeyError(f'id {m_id} was not found in missions')
             ms = mission_db.DB_Mission()
             mission = ms.get_mission_by_id(m_id)
@@ -68,7 +68,7 @@ class ValidateData:
     
 
     def check_finish_mission(self, m_id):
-            if self.check_id_exsits(m_id, 'missions') is None:
+            if not self.check_id_exsits(m_id, 'missions'):
                 raise KeyError(f'id {m_id} was not found in missions')
             ms = mission_db.DB_Mission()
             mission = ms.get_mission_by_id(m_id)
@@ -77,7 +77,7 @@ class ValidateData:
             return True
 
     def check_cancel_mission(self, m_id):
-            if self.check_id_exsits(m_id, 'missions') is None:
+            if not self.check_id_exsits(m_id, 'missions'):
                 raise KeyError(f'id {m_id} was not found in missions')
             ms = mission_db.DB_Mission()
             mission = ms.get_mission_by_id(m_id)

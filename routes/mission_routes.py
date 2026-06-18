@@ -49,3 +49,20 @@ def assign_mission_to_agent(id:int, agent_id:int):
 
     mission_instance.assign_mission(id, agent_id)
     return 'ASSIGNED'
+
+
+@route.put('/missions/{id}/start')
+def start_mission(id:int):
+            try:
+                can_start = validate.check_start_mission(id)
+            except KeyError as e:
+                raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=str(e))
+            except ValueError as e:
+                raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=str(e))
+
+            if can_start:
+                mission_instance.update_mission_status(id, 'IN_PROGRESS')
+                return 'IN_PROGRESS'
+            raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=str(e))
+           
+                 

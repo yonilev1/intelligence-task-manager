@@ -131,6 +131,26 @@ class DB_Mission:
         return row['count']
     
 
+    def count_completed_missions(self):
+        conn, cursor = self.get_connection_with_db()
+        cursor.execute(f"""SELECT COUNT(*) as count FROM missions
+                       WHERE status = 'COMPLETED';""")
+        row = cursor.fetchone()
+        cursor.close()
+        conn.close()
+        return row['count']
+    
+
+    def count_failed_missions(self):
+        conn, cursor = self.get_connection_with_db()
+        cursor.execute(f"""SELECT COUNT(*) as count FROM missions
+                       WHERE status = 'FAILED';""")
+        row = cursor.fetchone()
+        cursor.close()
+        conn.close()
+        return row['count']
+    
+
     def count_critical_missions(self):
         conn, cursor = self.get_connection_with_db()
         cursor.execute(f"""SELECT COUNT(*) as count FROM missions

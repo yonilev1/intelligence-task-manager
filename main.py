@@ -5,6 +5,7 @@ import uvicorn
 app = FastAPI()
 app.include_router(agent_routes.route)
 app.include_router(mission_routes.route)
+app.include_router(report_routes.route)
 
 
 if __name__=="__main__":

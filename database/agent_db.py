@@ -58,11 +58,7 @@ class DB_Agent:
     
 
     def deactivate_agent(self, agent_id):
-        #To that active
-        if self.update_agent(agent_id, {'is_active':False}) == 'Agent updated successfuly.':
-            return 'Agent deactivated successfuly.'
-        return 'agent already deactivatred.'
-    
+        return self.update_agent(agent_id, {'is_active':False})
 
     def increment_completed(self, agent_id):
         conn, cursor = self.get_connrection_with_db()

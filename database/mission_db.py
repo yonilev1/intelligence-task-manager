@@ -171,7 +171,7 @@ class DB_Mission:
         row = cursor.fetchall()
         cursor.close()
         conn.close()
-        return row['assigned_agent_id']
+        return row[0]['assigned_agent_id']
 
 
 #title, description, location, difficulty, importance, status, risk_level) 

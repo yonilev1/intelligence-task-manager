@@ -25,3 +25,12 @@ def get_missions_by_status():
                      "completed": mission_instance.count_by_status('COMPLETED'), 
                      "failed": mission_instance.count_by_status('FAILED'), 
                      "canceled": mission_instance.count_by_status('CANCELLED')}}
+
+
+@route.get('/reports/top-agent')
+def get_top_agent():
+    top_agent_id = mission_instance.get_top_agent()
+    agent = agent_instance.get_agent_by_id(top_agent_id)
+    if agent:
+        return {'message':'top agent', 'data': agent}
+    raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,detail='No top agent')

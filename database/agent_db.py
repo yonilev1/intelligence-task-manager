@@ -4,6 +4,7 @@ import mysql.connector
 connection = cdb.Db_Connection()
 class DB_Agent:
     def create_agent(self, data: dict):
+        
         conn, cursor = self.get_connrection_with_db()
         try:
             cursor.execute("""

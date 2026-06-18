@@ -1,0 +1,3 @@
+2026-06-18 12:46:48,106 | INFO | in endpoint create agent
+2026-06-18 12:46:48,106 | INFO | accessing db to add agent
+2026-06-18 12:46:48,161 | ERROR | rank shoulde by only one of - [Junior, Senior, Commander]

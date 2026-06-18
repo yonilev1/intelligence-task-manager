@@ -30,9 +30,9 @@ class ValidateData:
     def check_assign_mission(self, m_id, a_id):
         conn,cursor = self.get_connection_with_db()
         if self.check_id_exsits(m_id, 'missions') is None:
-            raise ValueError(f'id {m_id} was not found in missions')
+            raise KeyError(f'id {m_id} was not found in missions')
         if self.check_id_exsits(a_id, 'agents') is None:
-            raise ValueError(f'id {a_id} was not found in agents')
+            raise KeyError(f'id {a_id} was not found in agents')
         
         ms = mission_db.DB_Mission()
         ag = agent_db.DB_Agent()
@@ -46,7 +46,7 @@ class ValidateData:
             raise ValueError(f'Non active agent cant be assigned with missions')
         
         if not self.get_active_member_opend_missions(a_id):
-            raise ValueError(f'Nagent cant be assigned with missions, already has 3 or more missions')
+            raise ValueError(f'agent cant be assigned with missions, already has 3 or more missions')
         
         if mission['risk_level'] =='CRITICAL' and agent['agent_rank'] != 'Commander':
             raise ValueError(f'only commander can get mission critical')
@@ -54,7 +54,36 @@ class ValidateData:
         if mission['status'] !='NEW':
             raise ValueError(f'only new mission can be assigned')
 
-        return ms.assign_mission(m_id, a_id)        
+        return True
+
+
+    def check_start_mission(self, m_id):
+            if self.check_id_exsits(m_id, 'missions') is None:
+                raise KeyError(f'id {m_id} was not found in missions')
+            ms = mission_db.DB_Mission()
+            mission = ms.get_mission_by_id(m_id)
+            if mission['status'] !='ASSIGNED':
+                raise ValueError(f'only ASSIGNED mission can be started')
+            return True
+    
+
+    def check_finish_mission(self, m_id):
+            if self.check_id_exsits(m_id, 'missions') is None:
+                raise KeyError(f'id {m_id} was not found in missions')
+            ms = mission_db.DB_Mission()
+            mission = ms.get_mission_by_id(m_id)
+            if mission['status'] !='IN_PROSRESS':
+                raise ValueError(f'only ASSIGNED mission can be completed or failed')
+            return True
+
+    def check_cancel_mission(self, m_id):
+            if self.check_id_exsits(m_id, 'missions') is None:
+                raise KeyError(f'id {m_id} was not found in missions')
+            ms = mission_db.DB_Mission()
+            mission = ms.get_mission_by_id(m_id)
+            if mission['status'] !='NEW' and mission['status'] !='ASSIGNED':
+                raise ValueError(f'only NEW or ASSIGNED mission can be cancelled')
+            return True
 
         
 

@@ -1,4 +1,4 @@
-import connection_db as cdb
+from . import connection_db as cdb
 import mysql.connector
 
 connection = cdb.Db_Connection()
@@ -141,13 +141,15 @@ class DB_Mission:
 
     def get_top_agent(self):
         conn, cursor = self.get_connection_with_db()
-        cursor.execute(f"""SELECT assigned_agent_id, COUNT(*) as count FROM missions
+        cursor.execute(f"""SELECT assigned_agent_id FROM missions
                        WHERE status = 'COMPLETED'
-                       GROUP BY assigned_agent_id;""")
+                       GROUP BY assigned_agent_id
+                       ORDER BY COUNT(*) DESC
+                       LIMIT 1;""")
         row = cursor.fetchall()
         cursor.close()
         conn.close()
-        return row[0]['assigned_agent_id']
+        return row['assigned_agent_id']
 
 
 #title, description, location, difficulty, importance, status, risk_level) 

@@ -1,4 +1,4 @@
-from database import connection_db as cdb
+from . import connection_db as cdb
 import mysql.connector
 
 connection = cdb.Db_Connection()
@@ -65,13 +65,6 @@ class DB_Agent:
     
 
     def increment_completed(self, agent_id):
-        '''conn = connection.get_connection()
-        cursor = conn.cursor(dictionary=True)
-        cursor.execute("USE Intelligence_db")
-        cursor.close()
-
-        #check that ID exists else error
-        cursor = conn.cursor(dictionary=True)'''
         conn, cursor = self.get_connrection_with_db()
         cursor.execute(f"""SELECT completed_missions AS cm FROM agents WHERE id = %s;""",(agent_id,))
         complete_number = cursor.fetchone()
@@ -82,13 +75,6 @@ class DB_Agent:
     
 
     def increment_failed(self, agent_id):
-        '''conn = connection.get_connection()
-        cursor = conn.cursor(dictionary=True)
-        cursor.execute("USE Intelligence_db")
-        cursor.close()
-
-        #check that ID exists else error
-        cursor = conn.cursor(dictionary=True)'''
         conn, cursor = self.get_connrection_with_db()
         cursor.execute(f"""SELECT failed_missions AS fm FROM agents WHERE id = %s;""",(agent_id,))
         failed_number = cursor.fetchone()
@@ -99,13 +85,6 @@ class DB_Agent:
 
     
     def get_agent_performance(self, agent_id):
-        '''conn = connection.get_connection()
-        cursor = conn.cursor(dictionary=True)
-        cursor.execute("USE Intelligence_db")
-        cursor.close()
-
-        #check that ID exists else error
-        cursor = conn.cursor(dictionary=True)'''
         conn, cursor = self.get_connrection_with_db()
         cursor.execute(f"""SELECT completed_missions, failed_missions FROM agents WHERE id = %s;""",(agent_id,))
         row = cursor.fetchone()
@@ -119,12 +98,6 @@ class DB_Agent:
     
 
     def count_active_agents(self):
-        '''conn = connection.get_connection()
-        cursor = conn.cursor(dictionary=True)
-        cursor.execute("USE Intelligence_db")
-        cursor.close()
-
-        cursor = conn.cursor(dictionary=True)'''
         conn, cursor = self.get_connrection_with_db()
         cursor.execute(f"""SELECT COUNT(*) AS count FROM agents
                        WHERE is_active = True

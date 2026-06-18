@@ -23,3 +23,11 @@ def create_agent(agent:CreateAgent):
 @route.get('/agents')
 def get_all_agents():
     return agent_instance.get_all_agents()
+
+
+@route.get('/agents/{id}')
+def get_agent_by_id(id:int):
+    agent = agent_instance.get_agent_by_id(id)
+    if not agent:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f'Agent not found')
+    return agent

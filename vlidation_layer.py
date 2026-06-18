@@ -72,8 +72,8 @@ class ValidateData:
                 raise KeyError(f'id {m_id} was not found in missions')
             ms = mission_db.DB_Mission()
             mission = ms.get_mission_by_id(m_id)
-            if mission['status'] !='IN_PROSRESS':
-                raise ValueError(f'only ASSIGNED mission can be completed or failed')
+            if mission['status'] !='IN_PROGRESS':
+                raise ValueError(f'only IN_PROGRESS mission can be completed or failed')
             return True
 
     def check_cancel_mission(self, m_id):

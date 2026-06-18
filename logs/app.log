@@ -1,3 +1,263 @@
 2026-06-18 12:46:48,106 | INFO | in endpoint create agent
 2026-06-18 12:46:48,106 | INFO | accessing db to add agent
 2026-06-18 12:46:48,161 | ERROR | rank shoulde by only one of - [Junior, Senior, Commander]
+2026-06-18 15:20:30,664 | INFO | in endpoint get_all_agents
+2026-06-18 15:20:30,666 | INFO | accessing db to get all agent
+2026-06-18 15:20:30,666 | INFO | returning all agents
+2026-06-18 15:20:47,284 | INFO | in endpoint create agent
+2026-06-18 15:20:47,285 | INFO | accessing db to add agent
+2026-06-18 15:20:47,326 | INFO | agent addedd successfully
+2026-06-18 15:21:21,099 | INFO | in endpoint create agent
+2026-06-18 15:21:21,099 | INFO | accessing db to add agent
+2026-06-18 15:21:21,129 | INFO | agent addedd successfully
+2026-06-18 15:21:35,901 | INFO | in endpoint create agent
+2026-06-18 15:21:35,902 | INFO | accessing db to add agent
+2026-06-18 15:21:35,937 | INFO | agent addedd successfully
+2026-06-18 15:21:39,261 | INFO | in endpoint create agent
+2026-06-18 15:21:39,262 | INFO | accessing db to add agent
+2026-06-18 15:21:39,281 | ERROR | rank shoulde by only one of - [Junior, Senior, Commander]
+2026-06-18 15:21:44,986 | INFO | in endpoint get_all_agents
+2026-06-18 15:21:44,986 | INFO | accessing db to get all agent
+2026-06-18 15:21:44,986 | INFO | returning all agents
+2026-06-18 15:21:55,791 | INFO | in endpoint get_agent_by_id
+2026-06-18 15:21:55,792 | INFO | accessing db to get agent
+2026-06-18 15:21:55,819 | INFO | returning agent
+2026-06-18 15:21:58,439 | INFO | in endpoint get_agent_by_id
+2026-06-18 15:21:58,439 | INFO | accessing db to get agent
+2026-06-18 15:21:58,468 | INFO | returning agent
+2026-06-18 15:22:01,428 | INFO | in endpoint get_agent_by_id
+2026-06-18 15:22:01,429 | INFO | accessing db to get agent
+2026-06-18 15:22:01,442 | INFO | returning agent
+2026-06-18 15:22:04,799 | INFO | in endpoint get_agent_by_id
+2026-06-18 15:22:04,799 | INFO | accessing db to get agent
+2026-06-18 15:22:04,822 | ERROR | agent does not exist
+2026-06-18 15:22:36,974 | INFO | in endpoint update_agent
+2026-06-18 15:22:36,974 | INFO | accessing db to validate agent
+2026-06-18 15:23:14,546 | INFO | in endpoint update_agent
+2026-06-18 15:23:14,547 | INFO | accessing db to validate agent
+2026-06-18 15:23:14,580 | INFO | accessing db to update agent
+2026-06-18 15:23:14,613 | INFO | updated agent
+2026-06-18 15:23:29,942 | INFO | in endpoint update_agent
+2026-06-18 15:23:29,942 | INFO | accessing db to validate agent
+2026-06-18 15:23:29,964 | ERROR | agent does not exist
+2026-06-18 15:23:47,008 | INFO | in endpoint update_agent
+2026-06-18 15:23:47,009 | INFO | accessing db to validate agent
+2026-06-18 15:23:47,053 | INFO | accessing db to update agent
+2026-06-18 15:25:39,280 | INFO | in endpoint update_agent
+2026-06-18 15:25:39,280 | INFO | accessing db to validate agent
+2026-06-18 15:25:39,306 | INFO | accessing db to update agent
+2026-06-18 15:26:14,108 | INFO | in endpoint update_agent
+2026-06-18 15:26:14,109 | INFO | accessing db to validate agent
+2026-06-18 15:26:14,135 | INFO | accessing db to update agent
+2026-06-18 15:26:14,161 | ERROR | data not currect for update
+2026-06-18 15:26:43,528 | INFO | in endpoint create agent
+2026-06-18 15:26:43,528 | INFO | accessing db to add agent
+2026-06-18 15:26:43,551 | INFO | agent addedd successfully
+2026-06-18 15:26:53,532 | INFO | in endpoint deactivate_agent
+2026-06-18 15:26:53,532 | INFO | accessing db to validate agent
+2026-06-18 15:26:53,546 | INFO | accessing db to deactivate agent
+2026-06-18 15:27:49,075 | INFO | in endpoint deactivate_agent
+2026-06-18 15:27:49,076 | INFO | accessing db to validate agent
+2026-06-18 15:27:49,098 | INFO | accessing db to deactivate agent
+2026-06-18 15:27:49,145 | INFO | deactivated agent
+2026-06-18 15:27:57,294 | INFO | in endpoint deactivate_agent
+2026-06-18 15:27:57,294 | INFO | accessing db to validate agent
+2026-06-18 15:27:57,322 | INFO | accessing db to deactivate agent
+2026-06-18 15:27:57,337 | INFO | deactivated agent
+2026-06-18 15:28:05,492 | INFO | in endpoint get_agent_performance
+2026-06-18 15:28:05,493 | INFO | accessing db to validate agent
+2026-06-18 15:28:05,539 | INFO | return agent performance
+2026-06-18 15:28:09,173 | INFO | in endpoint get_agent_performance
+2026-06-18 15:28:09,173 | INFO | accessing db to validate agent
+2026-06-18 15:28:09,203 | INFO | return agent performance
+2026-06-18 15:28:15,059 | INFO | in endpoint get_all_missions
+2026-06-18 15:28:15,060 | INFO | accessing db to get all missions
+2026-06-18 15:28:15,060 | INFO | returning all missions
+2026-06-18 15:30:10,223 | INFO | in endpoint get_all_missions
+2026-06-18 15:30:10,223 | INFO | accessing db to get all missions
+2026-06-18 15:30:10,223 | INFO | returning all missions
+2026-06-18 15:30:40,018 | INFO | in endpoint create mission
+2026-06-18 15:30:40,019 | INFO | accessing db to add mission
+2026-06-18 15:30:40,070 | INFO | mission addedd successfully
+2026-06-18 15:30:59,034 | INFO | in endpoint create mission
+2026-06-18 15:30:59,034 | INFO | accessing db to add mission
+2026-06-18 15:30:59,068 | INFO | mission addedd successfully
+2026-06-18 15:31:14,059 | INFO | in endpoint create mission
+2026-06-18 15:31:14,060 | INFO | accessing db to add mission
+2026-06-18 15:31:14,097 | INFO | mission addedd successfully
+2026-06-18 15:31:18,904 | INFO | in endpoint get_all_missions
+2026-06-18 15:31:18,904 | INFO | accessing db to get all missions
+2026-06-18 15:31:18,904 | INFO | returning all missions
+2026-06-18 15:31:31,026 | INFO | in endpoint get_mission_by_id
+2026-06-18 15:31:31,026 | INFO | accessing db to get mission
+2026-06-18 15:31:31,054 | INFO | returning mission
+2026-06-18 15:31:38,832 | INFO | in endpoint get_mission_by_id
+2026-06-18 15:31:38,832 | INFO | accessing db to get mission
+2026-06-18 15:31:38,866 | ERROR | mission does not exist
+2026-06-18 15:32:00,624 | INFO | in endpoint get_mission_by_id
+2026-06-18 15:32:00,624 | INFO | accessing db to get mission
+2026-06-18 15:32:00,666 | INFO | returning mission
+2026-06-18 15:32:06,322 | INFO | in endpoint get_mission_by_id
+2026-06-18 15:32:06,322 | INFO | accessing db to get mission
+2026-06-18 15:32:06,338 | ERROR | mission does not exist
+2026-06-18 15:32:31,513 | INFO | in endpoint assign_mission_to_agent
+2026-06-18 15:32:31,513 | INFO | accessing db to validate mission and agent
+2026-06-18 15:32:31,641 | ERROR | data not currect for assignment
+2026-06-18 15:33:13,841 | INFO | in endpoint assign_mission_to_agent
+2026-06-18 15:33:13,841 | INFO | accessing db to validate mission and agent
+2026-06-18 15:33:13,898 | ERROR | data not currect for assignment
+2026-06-18 15:33:31,553 | INFO | in endpoint assign_mission_to_agent
+2026-06-18 15:33:31,553 | INFO | accessing db to validate mission and agent
+2026-06-18 15:33:31,703 | INFO | accessing db to assign mission to agent
+2026-06-18 15:33:31,777 | INFO | mission assigned
+2026-06-18 15:33:43,432 | INFO | in endpoint assign_mission_to_agent
+2026-06-18 15:33:43,432 | INFO | accessing db to validate mission and agent
+2026-06-18 15:33:43,595 | INFO | accessing db to assign mission to agent
+2026-06-18 15:33:43,679 | INFO | mission assigned
+2026-06-18 15:33:53,533 | INFO | in endpoint assign_mission_to_agent
+2026-06-18 15:33:53,533 | INFO | accessing db to validate mission and agent
+2026-06-18 15:33:53,676 | ERROR | data not currect for assignment
+2026-06-18 15:33:56,773 | INFO | in endpoint assign_mission_to_agent
+2026-06-18 15:33:56,773 | INFO | accessing db to validate mission and agent
+2026-06-18 15:33:56,920 | INFO | accessing db to assign mission to agent
+2026-06-18 15:33:57,015 | INFO | mission assigned
+2026-06-18 15:34:20,659 | INFO | in endpoint fail_mission
+2026-06-18 15:34:20,660 | INFO | accessing db to validate mission
+2026-06-18 15:34:20,701 | INFO | accessing db to CANCELLED mission
+2026-06-18 15:34:20,729 | INFO | mission CANCELLED
+2026-06-18 15:34:39,504 | INFO | in endpoint start_mission
+2026-06-18 15:34:39,505 | INFO | accessing db to validate mission
+2026-06-18 15:34:39,546 | INFO | accessing db to assign mission to agent
+2026-06-18 15:34:39,577 | INFO | mission started
+2026-06-18 15:34:44,345 | INFO | in endpoint start_mission
+2026-06-18 15:34:44,346 | INFO | accessing db to validate mission
+2026-06-18 15:34:44,414 | INFO | accessing db to assign mission to agent
+2026-06-18 15:34:44,459 | INFO | mission started
+2026-06-18 15:34:47,871 | INFO | in endpoint start_mission
+2026-06-18 15:34:47,871 | INFO | accessing db to validate mission
+2026-06-18 15:34:47,927 | ERROR | data not currect for mission
+2026-06-18 15:35:02,339 | INFO | in endpoint complete_mission
+2026-06-18 15:35:02,340 | INFO | accessing db to validate mission
+2026-06-18 15:35:02,395 | INFO | accessing db to COMPLETED mission
+2026-06-18 15:35:02,517 | INFO | mission COMPLETED
+2026-06-18 15:35:25,553 | INFO | in endpoint complete_mission
+2026-06-18 15:35:25,553 | INFO | accessing db to validate mission
+2026-06-18 15:35:25,589 | ERROR | data not currect for mission
+2026-06-18 15:35:32,933 | INFO | in endpoint fail_mission
+2026-06-18 15:35:32,933 | INFO | accessing db to validate mission
+2026-06-18 15:35:32,977 | INFO | accessing db to FAILED mission
+2026-06-18 15:35:33,115 | INFO | mission FAILED
+2026-06-18 15:35:36,336 | INFO | in endpoint fail_mission
+2026-06-18 15:35:36,336 | INFO | accessing db to validate mission
+2026-06-18 15:35:36,390 | ERROR | data not currect for mission
+2026-06-18 15:35:42,829 | INFO | in endpoint fail_mission
+2026-06-18 15:35:42,829 | INFO | accessing db to validate mission
+2026-06-18 15:35:42,851 | ERROR | mission does not exist
+2026-06-18 15:36:35,320 | INFO | in endpoint get_all_agents
+2026-06-18 15:36:35,321 | INFO | accessing db to get all agent
+2026-06-18 15:36:35,322 | INFO | returning all agents
+2026-06-18 15:37:14,422 | INFO | in endpoint get_all_missions
+2026-06-18 15:37:14,423 | INFO | accessing db to get all missions
+2026-06-18 15:37:14,423 | INFO | returning all missions
+2026-06-18 15:39:46,446 | INFO | in endpoint get_all_agents
+2026-06-18 15:39:46,448 | INFO | accessing db to get all agent
+2026-06-18 15:39:46,448 | INFO | returning all agents
+2026-06-18 15:40:11,798 | INFO | in endpoint get_agent_by_id
+2026-06-18 15:40:11,798 | INFO | accessing db to get agent
+2026-06-18 15:40:11,821 | ERROR | agent does not exist
+2026-06-18 15:40:15,047 | INFO | in endpoint get_agent_by_id
+2026-06-18 15:40:15,047 | INFO | accessing db to get agent
+2026-06-18 15:40:15,116 | INFO | returning agent
+2026-06-18 15:40:30,742 | INFO | in endpoint create mission
+2026-06-18 15:40:30,744 | INFO | accessing db to add mission
+2026-06-18 15:40:30,811 | INFO | mission addedd successfully
+2026-06-18 15:40:59,332 | INFO | in endpoint assign_mission_to_agent
+2026-06-18 15:40:59,332 | INFO | accessing db to validate mission and agent
+2026-06-18 15:40:59,541 | ERROR | data not currect for assignment
+2026-06-18 15:41:11,902 | INFO | in endpoint start_mission
+2026-06-18 15:41:11,903 | INFO | accessing db to validate mission
+2026-06-18 15:41:11,951 | ERROR | data not currect for mission
+2026-06-18 15:41:22,522 | INFO | in endpoint fail_mission
+2026-06-18 15:41:22,522 | INFO | accessing db to validate mission
+2026-06-18 15:41:22,575 | ERROR | data not currect for mission
+2026-06-18 15:41:27,273 | INFO | in endpoint complete_mission
+2026-06-18 15:41:27,274 | INFO | accessing db to validate mission
+2026-06-18 15:41:27,328 | ERROR | data not currect for mission
+2026-06-18 15:41:34,215 | INFO | in endpoint fail_mission
+2026-06-18 15:41:34,216 | INFO | accessing db to validate mission
+2026-06-18 15:41:34,314 | INFO | accessing db to CANCELLED mission
+2026-06-18 15:41:34,383 | INFO | mission CANCELLED
+2026-06-18 15:41:40,735 | INFO | in endpoint create mission
+2026-06-18 15:41:40,735 | INFO | accessing db to add mission
+2026-06-18 15:41:40,830 | INFO | mission addedd successfully
+2026-06-18 15:42:10,102 | INFO | in endpoint assign_mission_to_agent
+2026-06-18 15:42:10,103 | INFO | accessing db to validate mission and agent
+2026-06-18 15:42:10,295 | ERROR | data not currect for assignment
+2026-06-18 15:42:17,486 | INFO | in endpoint assign_mission_to_agent
+2026-06-18 15:42:17,486 | INFO | accessing db to validate mission and agent
+2026-06-18 15:42:17,743 | ERROR | data not currect for assignment
+2026-06-18 15:42:24,019 | INFO | in endpoint assign_mission_to_agent
+2026-06-18 15:42:24,019 | INFO | accessing db to validate mission and agent
+2026-06-18 15:42:24,202 | INFO | accessing db to assign mission to agent
+2026-06-18 15:42:24,309 | INFO | mission assigned
+2026-06-18 15:42:29,124 | INFO | in endpoint create mission
+2026-06-18 15:42:29,125 | INFO | accessing db to add mission
+2026-06-18 15:42:29,187 | INFO | mission addedd successfully
+2026-06-18 15:42:29,814 | INFO | in endpoint create mission
+2026-06-18 15:42:29,814 | INFO | accessing db to add mission
+2026-06-18 15:42:29,856 | INFO | mission addedd successfully
+2026-06-18 15:42:30,277 | INFO | in endpoint create mission
+2026-06-18 15:42:30,277 | INFO | accessing db to add mission
+2026-06-18 15:42:30,348 | INFO | mission addedd successfully
+2026-06-18 15:42:35,264 | INFO | in endpoint assign_mission_to_agent
+2026-06-18 15:42:35,264 | INFO | accessing db to validate mission and agent
+2026-06-18 15:42:35,418 | ERROR | data not currect for assignment
+2026-06-18 15:42:54,343 | INFO | in endpoint assign_mission_to_agent
+2026-06-18 15:42:54,343 | INFO | accessing db to validate mission and agent
+2026-06-18 15:42:54,532 | INFO | accessing db to assign mission to agent
+2026-06-18 15:42:54,640 | INFO | mission assigned
+2026-06-18 15:42:57,937 | INFO | in endpoint assign_mission_to_agent
+2026-06-18 15:42:57,938 | INFO | accessing db to validate mission and agent
+2026-06-18 15:42:58,161 | INFO | accessing db to assign mission to agent
+2026-06-18 15:42:58,321 | INFO | mission assigned
+2026-06-18 15:43:01,325 | INFO | in endpoint assign_mission_to_agent
+2026-06-18 15:43:01,325 | INFO | accessing db to validate mission and agent
+2026-06-18 15:43:01,508 | ERROR | data not currect for assignment
+2026-06-18 15:43:11,340 | INFO | in endpoint start_mission
+2026-06-18 15:43:11,340 | INFO | accessing db to validate mission
+2026-06-18 15:43:11,400 | INFO | accessing db to assign mission to agent
+2026-06-18 15:43:11,453 | INFO | mission started
+2026-06-18 15:43:18,881 | INFO | in endpoint complete_mission
+2026-06-18 15:43:18,882 | INFO | accessing db to validate mission
+2026-06-18 15:43:18,959 | INFO | accessing db to COMPLETED mission
+2026-06-18 15:43:19,150 | INFO | mission COMPLETED
+2026-06-18 15:43:26,832 | INFO | in endpoint assign_mission_to_agent
+2026-06-18 15:43:26,832 | INFO | accessing db to validate mission and agent
+2026-06-18 15:43:27,008 | INFO | accessing db to assign mission to agent
+2026-06-18 15:43:27,118 | INFO | mission assigned
+2026-06-18 15:43:34,043 | INFO | in endpoint start_mission
+2026-06-18 15:43:34,044 | INFO | accessing db to validate mission
+2026-06-18 15:43:34,096 | INFO | accessing db to assign mission to agent
+2026-06-18 15:43:34,170 | INFO | mission started
+2026-06-18 15:43:46,320 | INFO | in endpoint complete_mission
+2026-06-18 15:43:46,320 | INFO | accessing db to validate mission
+2026-06-18 15:43:46,438 | ERROR | data not currect for mission
+2026-06-18 15:43:49,849 | INFO | in endpoint complete_mission
+2026-06-18 15:43:49,849 | INFO | accessing db to validate mission
+2026-06-18 15:43:49,910 | INFO | accessing db to COMPLETED mission
+2026-06-18 15:43:50,085 | INFO | mission COMPLETED
+2026-06-18 15:43:56,519 | INFO | in endpoint fail_mission
+2026-06-18 15:43:56,520 | INFO | accessing db to validate mission
+2026-06-18 15:43:56,686 | ERROR | data not currect for mission
+2026-06-18 15:44:01,687 | INFO | in endpoint start_mission
+2026-06-18 15:44:01,687 | INFO | accessing db to validate mission
+2026-06-18 15:44:01,741 | INFO | accessing db to assign mission to agent
+2026-06-18 15:44:01,802 | INFO | mission started
+2026-06-18 15:44:06,682 | INFO | in endpoint fail_mission
+2026-06-18 15:44:06,682 | INFO | accessing db to validate mission
+2026-06-18 15:44:06,772 | INFO | accessing db to FAILED mission
+2026-06-18 15:44:06,927 | INFO | mission FAILED
+2026-06-18 15:44:13,339 | INFO | in endpoint fail_mission
+2026-06-18 15:44:13,339 | INFO | accessing db to validate mission
+2026-06-18 15:44:13,404 | INFO | accessing db to CANCELLED mission
+2026-06-18 15:44:13,455 | INFO | mission CANCELLED

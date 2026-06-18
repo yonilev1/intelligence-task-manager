@@ -1,7 +1,7 @@
 from fastapi import FastAPI, status, HTTPException, APIRouter
 from pydantic import BaseModel
 from database import agent_db
-import vlidation_layer
+import vlidation_layer as vlidation_layer
 from logs import logger
 
 route = APIRouter()
@@ -34,7 +34,10 @@ def get_all_agents():
     my_logger.info('in endpoint get_all_agents')
     my_logger.info('accessing db to get all agent')
     my_logger.info('returning all agents')
-    return agent_instance.get_all_agents()
+    agents = agent_instance.get_all_agents()
+    if agents:
+        return {'message': 'All agents', 'data':agents}
+    return agents
 
 
 @route.get('/agents/{id}')
@@ -46,7 +49,7 @@ def get_agent_by_id(id:int):
         my_logger.error('agent does not exist')
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND)
     my_logger.info('returning agent')
-    return agent
+    return {'message': 'agent', 'data':agent}
 
 
 @route.put('/agents/{id}')

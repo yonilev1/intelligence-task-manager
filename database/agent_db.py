@@ -48,9 +48,12 @@ class DB_Agent:
 
         #cursor = conn.cursor(dictionary=True)
         conn, cursor = self.get_connrection_with_db()
-        cursor.execute(f"""
-        UPDATE agents SET {parts_in_str} WHERE id = %s
-        """, parsed_data)
+        try:
+            cursor.execute(f"""
+            UPDATE agents SET {parts_in_str} WHERE id = %s
+            """, parsed_data)
+        except mysql.connector.errors.DatabaseError as e: 
+            raise ValueError
         did_update = cursor.rowcount
         conn.commit()
         cursor.close()

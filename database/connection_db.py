@@ -52,6 +52,7 @@ class Db_Connection:
             failed_missions INT NOT NULL DEFAULT 0,             
             agent_rank ENUM('Junior', 'Senior', 'Commander') NOT NULL);
         """)
+        conn.commit()
         cursor.close()
 
         cursor = conn.cursor()
@@ -67,6 +68,9 @@ class Db_Connection:
             risk_level VARCHAR(8) NOT NULL,             
             assigned_agent_id INT DEFAULT NULL);
         """)
+        conn.commit()
+        cursor.close()
+        conn.close()
 
 
 if __name__ == "__main__":

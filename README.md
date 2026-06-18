@@ -20,6 +20,7 @@ file structur:
     │   └── report_routes.py 
     ├── logs/               
     │   └── app.log 
+    |   |__logger.py
     ├── README.md             
     └── requirements.txt 
     |__validation_layer.py
@@ -130,6 +131,7 @@ classes:
 
 
     Routes:
+        return rool: (aprooved by noam): if data return dict else return just [], (unless we are searching for specific id if we dont find raise 404)
 
         agent routs:
                 [POST]/agents               Create new agent
@@ -219,7 +221,7 @@ how to run DB layer:
 how ro run server:
 
     1: python main.py
-    2: in terminal: uvicorn main:app 127.0.0.1 --reload
+    2: in terminal: uvicorn main:app --reload
 
 
 

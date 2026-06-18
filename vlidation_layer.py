@@ -118,6 +118,8 @@ class ValidateData:
 
         cursor = conn.cursor(dictionary=True)
         return conn, cursor
-    
-#val = ValidateData()
-#print(val.check_assign_mission(4, 4))
+
+
+if __name__ == "__main__":
+    val = ValidateData()
+    print(val.check_assign_mission(4, 4))

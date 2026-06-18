@@ -29,10 +29,10 @@ class ValidateData:
 
     def check_assign_mission(self, m_id, a_id):
         conn,cursor = self.get_connection_with_db()
-        if self.check_id_exsits(m_id, 'missions') is None:
-            raise KeyError(f'id {m_id} was not found in missions')
-        if self.check_id_exsits(a_id, 'agents') is None:
-            raise KeyError(f'id {a_id} was not found in agents')
+        if not self.check_id_exsits(m_id, 'missions'):
+            raise KeyError(f'Mission not found')
+        if not self.check_id_exsits(a_id, 'agents'):
+            raise KeyError(f'Agent not found')
         
         ms = mission_db.DB_Mission()
         ag = agent_db.DB_Agent()
@@ -43,16 +43,16 @@ class ValidateData:
         cursor.close()
 
         if agent['is_active'] == False:
-            raise ValueError(f'Non active agent cant be assigned with missions')
+            raise ValueError(f'Agent is not active ')
         
         if not self.get_active_member_opend_missions(a_id):
-            raise ValueError(f'agent cant be assigned with missions, already has 3 or more missions')
+            raise ValueError(f' Agent has reached maximum missions')
         
         if mission['risk_level'] =='CRITICAL' and agent['agent_rank'] != 'Commander':
-            raise ValueError(f'only commander can get mission critical')
+            raise ValueError(f' Only Commander can handle critical missions')
         
         if mission['status'] !='NEW':
-            raise ValueError(f'only new mission can be assigned')
+            raise ValueError(f'Mission not available')
 
         return True
 
@@ -102,11 +102,11 @@ class ValidateData:
         conn,cursor = self.get_connection_with_db()
         cursor.execute(f"""select COUNT(*) as count
                        from missions 
-                       WHERE id = %s AND status LIKE '%SS%' """, (id,))
+                       WHERE assigned_agent_id = %s AND status LIKE '%SS%' """, (id,))
         row = cursor.fetchone()
         conn.close()
         cursor.close()
-        if row['count'] <= 3:
+        if row['count'] < 3:
             return True
         return False
 

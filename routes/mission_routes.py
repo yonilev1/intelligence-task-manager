@@ -27,7 +27,7 @@ def create_mission(mission:CreateAndUpdateMission):
 
 @route.get('/missions')
 def get_all_missions():
-    return {'messagem':'all missions', 'data':mission_instance.get_all_missions()}
+    return {'message':'all missions', 'data':mission_instance.get_all_missions()}
 
 
 @route.get('/missions/{id}')
@@ -35,4 +35,17 @@ def get_mission_by_id(id:int):
     mission = mission_instance.get_mission_by_id(id)
     if not mission:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND)
-    return mission
+    return {'message':'mission', 'data':mission_instance.get_mission_by_id(id)}
+
+
+@route.put('/missions/{id}/assign/{agent_id}')
+def assign_mission_to_agent(id:int, agent_id:int):
+    try:
+        can_assign = validate.check_assign_mission(id, agent_id)
+    except KeyError as e:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=str(e))
+    except ValueError as e:
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=str(e))
+
+    mission_instance.assign_mission(id, agent_id)
+    return 'ASSIGNED'

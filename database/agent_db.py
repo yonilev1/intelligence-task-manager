@@ -54,7 +54,7 @@ class DB_Agent:
         conn.commit()
         cursor.close()
         conn.close()
-        return 'Agent updated successfuly.' if did_update else 'could not update agent.'
+        return 'Agent updated successfuly.'
     
 
     def deactivate_agent(self, agent_id):

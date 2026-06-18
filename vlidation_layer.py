@@ -119,5 +119,5 @@ class ValidateData:
         cursor = conn.cursor(dictionary=True)
         return conn, cursor
     
-val = ValidateData()
-print(val.check_assign_mission(4, 4))
+#val = ValidateData()
+#print(val.check_assign_mission(4, 4))

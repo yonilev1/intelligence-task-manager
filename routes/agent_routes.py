@@ -1,7 +1,7 @@
 from fastapi import FastAPI, status, HTTPException, APIRouter
 from pydantic import BaseModel
 from database import agent_db
-import vlidation_layer as vlidation_layer
+import vlidation_layer
 from logs import logger
 
 route = APIRouter()

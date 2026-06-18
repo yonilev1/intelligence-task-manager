@@ -449,3 +449,65 @@
 2026-06-18 16:09:48,871 | INFO | accessing db to validate mission
 2026-06-18 16:09:48,997 | INFO | accessing db to COMPLETED mission
 2026-06-18 16:09:49,166 | INFO | mission COMPLETED
+2026-06-18 16:11:25,516 | INFO | in endpoint create agent
+2026-06-18 16:11:25,516 | INFO | accessing db to add agent
+2026-06-18 16:11:25,594 | INFO | agent addedd successfully
+2026-06-18 16:12:50,573 | INFO | in endpoint get_agent_performance
+2026-06-18 16:12:50,574 | INFO | accessing db to validate agent
+2026-06-18 16:12:50,624 | INFO | return agent performance
+2026-06-18 16:12:55,016 | INFO | in endpoint get_agent_performance
+2026-06-18 16:12:55,016 | INFO | accessing db to validate agent
+2026-06-18 16:12:55,042 | ERROR | agent does not exist
+2026-06-18 16:14:09,970 | INFO | in endpoint get_all_missions
+2026-06-18 16:14:09,970 | INFO | accessing db to get all missions
+2026-06-18 16:14:09,970 | INFO | returning all missions
+2026-06-18 16:14:20,187 | INFO | in endpoint get_mission_by_id
+2026-06-18 16:14:20,192 | INFO | accessing db to get mission
+2026-06-18 16:14:20,234 | ERROR | mission does not exist
+2026-06-18 16:14:24,691 | INFO | in endpoint get_mission_by_id
+2026-06-18 16:14:24,692 | INFO | accessing db to get mission
+2026-06-18 16:14:24,719 | INFO | returning mission
+2026-06-18 16:20:57,558 | INFO | in endpoint get_all_agents
+2026-06-18 16:20:57,559 | INFO | accessing db to get all agent
+2026-06-18 16:20:57,559 | INFO | returning all agents
+2026-06-18 16:21:05,599 | INFO | in endpoint create agent
+2026-06-18 16:21:05,600 | INFO | accessing db to add agent
+2026-06-18 16:21:05,671 | INFO | agent addedd successfully
+2026-06-18 16:21:11,901 | INFO | in endpoint create agent
+2026-06-18 16:21:11,901 | INFO | accessing db to add agent
+2026-06-18 16:21:11,984 | ERROR | rank shoulde by only one of - [Junior, Senior, Commander]
+2026-06-18 16:21:19,603 | INFO | in endpoint get_agent_by_id
+2026-06-18 16:21:19,603 | INFO | accessing db to get agent
+2026-06-18 16:21:19,630 | INFO | returning agent
+2026-06-18 16:21:22,547 | INFO | in endpoint get_agent_by_id
+2026-06-18 16:21:22,547 | INFO | accessing db to get agent
+2026-06-18 16:21:22,597 | ERROR | agent does not exist
+2026-06-18 16:21:28,109 | INFO | in endpoint get_agent_performance
+2026-06-18 16:21:28,109 | INFO | accessing db to validate agent
+2026-06-18 16:21:28,130 | ERROR | agent does not exist
+2026-06-18 16:21:29,507 | INFO | in endpoint get_agent_performance
+2026-06-18 16:21:29,508 | INFO | accessing db to validate agent
+2026-06-18 16:21:29,564 | ERROR | agent does not exist
+2026-06-18 16:21:32,250 | INFO | in endpoint get_agent_performance
+2026-06-18 16:21:32,250 | INFO | accessing db to validate agent
+2026-06-18 16:21:32,274 | INFO | return agent performance
+2026-06-18 16:21:36,913 | INFO | in endpoint get_all_missions
+2026-06-18 16:21:36,913 | INFO | accessing db to get all missions
+2026-06-18 16:21:36,913 | INFO | returning all missions
+2026-06-18 16:21:42,594 | INFO | in endpoint create mission
+2026-06-18 16:21:42,595 | INFO | accessing db to add mission
+2026-06-18 16:21:42,684 | INFO | mission addedd successfully
+2026-06-18 16:21:49,872 | INFO | in endpoint create mission
+2026-06-18 16:21:49,872 | INFO | accessing db to add mission
+2026-06-18 16:21:49,901 | ERROR | importance and difficulty shoulde by only 1-10
+2026-06-18 16:21:55,928 | INFO | in endpoint create mission
+2026-06-18 16:21:55,928 | INFO | accessing db to add mission
+2026-06-18 16:21:55,974 | ERROR | importance and difficulty shoulde by only 1-10
+2026-06-18 16:22:09,337 | INFO | in endpoint get_mission_by_id
+2026-06-18 16:22:09,337 | INFO | accessing db to get mission
+2026-06-18 16:22:09,365 | INFO | returning mission
+2026-06-18 16:22:13,338 | INFO | in endpoint get_mission_by_id
+2026-06-18 16:22:13,339 | INFO | accessing db to get mission
+2026-06-18 16:22:13,372 | ERROR | mission does not exist
+2026-06-18 16:22:40,028 | INFO | in endpoint assign_mission_to_agent
+2026-06-18 16:22:40,029 | INFO | accessing db to validate mission and agent
